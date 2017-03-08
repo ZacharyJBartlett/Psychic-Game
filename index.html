@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Psychic Game</title>
+    <link rel="stylesheet" type="text/javascript" src="assets/javascript/game.js">
+</head>
+
+<body>
+    <div>
+        <h1>The Psychic Game</h1>
+    </div>
+    <div>
+        <h3 id="Wins">Wins: 0</h3>
+    </div>
+    <div>
+        <h3 id="Losses">Losses: 0</h3>
+    </div>
+    <div>
+        <h3 id="Left">Guesses Left: 9</h3>
+    </div>
+    <div>
+        <h3 id="Guesses">Your Guesses so far: 0</h3>
+    </div>
+    <script>
+        var options = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '_'];
+        var wins = 0;
+        var losses = 0;
+        var guesses = 0;
+        var guessesLeft = 9;
+
+        document.onkeyup = function(event) {
+            wins.textContent = event.key;
+
+
+            var userGuess = event.key;
+
+            var computerGuess = options[Math.floor(Math.random() * options.length)];
+
+
+            if (userGuess === computerGuess) {
+                wins += 1;
+
+                document.getElementById('Wins').innerHTML = 'Wins: ' + wins;
+
+            } else if (userGuess != computerGuess) {
+                guessesLeft -= 1;
+                guesses += 1;
+                document.getElementById('Guesses').innerHTML = 'Guesses: ' + guesses;
+                document.getElementById('Left').innerHTML = 'Left: ' + guessesLeft;
+
+            }
+
+            if (guessesLeft === 0) {
+                losses += 1;
+                guesses = 0;
+                guessesLeft = 9;
+                document.getElementById('Losses').innerHTML = 'Losses: ' + losses;
+
+
+            }
+
+
+            console.log(computerGuess);
+
+
+
+        };
+    </script>
+</body>
+
+</html>
